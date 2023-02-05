@@ -104,9 +104,10 @@
 
             <div class="row mb-3 grid gap-2">
                 <div class="w-auto m-auto">
-                    <div class="input-group h-100" style="width: 170px;">
+                    <div class="input-group h-100" style="width: 180px;">
                         <span class="input-group-text" style="width: 60px;">Raza</span>
-                        <select class="form-select form-select-sm" aria-label="Raza">
+                        <select class="form-select" aria-label="Raza" onchange="cambioRaza(this)">
+                            <option value=""></option>
                             <option value="Humano">Humano</option>
                             <option value="Elfo">Elfo</option>
                             <option value="Enano">Enano</option>
@@ -119,9 +120,10 @@
                     </div>
                 </div>
                 <div class="w-auto m-auto">
-                    <div class="input-group h-100" style="width: 170px;">
+                    <div class="input-group h-100" style="width: 180px;">
                         <span class="input-group-text" style="width: 60px;">Clase</span>
-                        <select class="form-select form-select-sm" aria-label="Clase">
+                        <select class="form-select" aria-label="Clase" onchange="cambioClase(this)">
+                            <option value=""></option>
                             <option value="Guerrero">Guerrero</option>
                             <option value="Bárbaro">Bárbaro</option>
                             <option value="Pícaro">Pícaro</option>
@@ -133,16 +135,32 @@
                     </div>
                 </div>
             </div>
-            <div id="razaField" class="row">
-                <div id="mejoraClaseDiv">
-                    <p> <b>Mejora por raza: </b> +1 a 2 atributos</p>
+
+            <div id="razaField" class="row border border-1 rounded-1 p-1 mb-2" style="max-width: 95%; background: #f8f8f8;">
+                <div id="mejoraRazaDiv" class="">
+                    <p> <b>Mejora por Raza: </b> </p>
                 </div>
             </div>
-            <div id="claseField" class="row">
-                <div id="mejoraClaseDiv">
-                    <p> <b>Mejora por clase: </b> +1 a 2 atributos</p>
+            <div id="claseField" class="row border border-1 rounded-1 p-2 mb-3" style="max-width: 95%; background: #f8f8f8;">
+                <div id="mejoraClaseDiv" class=" " >
+                    <p> <b>Pasiva de Clase : </b></p>
                 </div>
             </div>
+
+            <div class="row mb-3">
+                <div class="w-auto m-auto">
+                    <div class="input-group h-100" style="width: 180px;">
+                        <span class="input-group-text" style="width: 60px;">Nivel</span>
+                        <select id="levelSelect" class="form-select" aria-label="Nivel" onchange="cambioNivel()">
+                            <option value=""></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <!-- <div class="row">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div> -->
