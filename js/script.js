@@ -359,7 +359,6 @@ function dibujarHabilidades() {
                         '   </div>' +
                         '</div>'
                         ;
-                    break;
                 case "2":
                     divHab.innerHTML +=
                         '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
@@ -368,7 +367,6 @@ function dibujarHabilidades() {
                         '   </div>' +
                         '</div>'
                         ;
-                    break;
                 case "1":
                     divHab.innerHTML +=
                         '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
