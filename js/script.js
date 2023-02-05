@@ -188,7 +188,11 @@ function cambioRaza(opt) {
 }
 
 function cambioClase(opt) {
-    let divPas = document.createElement("div");
+    dibujarEquipo(opt);
+    dibujarHabilidades();
+}
+
+function dibujarEquipo(opt) {
     let divEqi = document.createElement("div");
     let divAst = document.createElement("div");
     divAst.innerHTML = "<b>*</b> Puede usar el objeto pero no dispone de el inicialmente";
@@ -235,7 +239,6 @@ function cambioClase(opt) {
             clase = "Mago";
 
             divEqi.innerHTML = "<b>Equipo de Clase: </b>Bastón(1d6+INT | 4 dis)";
-            equipoClaseDiv.append(divPas);
             equipoClaseDiv.append(divEqi);
             break;
         case "Clérigo":
@@ -251,7 +254,6 @@ function cambioClase(opt) {
             equipoClaseDiv.append(divEqi);
             break;
     }
-    dibujarHabilidades();
 }
 
 function dibujarHabilidades() {
@@ -269,7 +271,6 @@ function dibujarHabilidades() {
                 '   </div>' +
                 '</div>'
                 ;
-            habilidadesDiv.append(divPas);
             break;
         case "Bárbaro":
             divPas.innerHTML =
@@ -279,7 +280,6 @@ function dibujarHabilidades() {
                 '   </div>' +
                 '</div>'
                 ;
-            habilidadesDiv.append(divPas);
             break;
         case "Pícaro":
             divPas.innerHTML =
@@ -289,7 +289,6 @@ function dibujarHabilidades() {
                 '   </div>' +
                 '</div>'
                 ;
-            habilidadesDiv.append(divPas);
             break;
         case "Cazador":
             divPas.innerHTML =
@@ -299,7 +298,6 @@ function dibujarHabilidades() {
                 '   </div>' +
                 '</div>'
                 ;
-            habilidadesDiv.append(divPas);
             break;
         case "Bardo":
             divPas.innerHTML =
@@ -309,7 +307,6 @@ function dibujarHabilidades() {
                 '   </div>' +
                 '</div>'
                 ;
-            habilidadesDiv.append(divPas);
             switch (nivel) {
                 case "3":
                     divHab.innerHTML +=
@@ -340,7 +337,6 @@ function dibujarHabilidades() {
                 default:
                     break;
             }
-            habilidadesDiv.append(divHab);
             break;
         case "Mago":
             divPas.innerHTML =
@@ -350,7 +346,6 @@ function dibujarHabilidades() {
                 '   </div>' +
                 '</div>'
                 ;
-            habilidadesDiv.append(divPas);
             switch (nivel) {
                 case "3":
                     divHab.innerHTML +=
@@ -383,7 +378,6 @@ function dibujarHabilidades() {
                 default:
                     break;
             }
-            habilidadesDiv.append(divHab);
             break;
         case "Clérigo":
             divPas.innerHTML =
@@ -393,7 +387,6 @@ function dibujarHabilidades() {
                 '   </div>' +
                 '</div>'
                 ;
-            habilidadesDiv.append(divPas);
             switch (nivel) {
                 case "3":
                     divHab.innerHTML +=
@@ -424,7 +417,6 @@ function dibujarHabilidades() {
                 default:
                     break;
             }
-            habilidadesDiv.append(divHab);
             break;
         case "":
             console.log("hola");
@@ -435,12 +427,14 @@ function dibujarHabilidades() {
                 '   </div>' +
                 '</div>'
                 ;
-            habilidadesDiv.append(divPas);
             break;
 
         default:
             break;
     }
+
+    habilidadesDiv.append(divPas);
+    habilidadesDiv.append(divHab);
 }
 
 function cambioNivel() {
