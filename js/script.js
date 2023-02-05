@@ -7,8 +7,10 @@ let sumaDiv = document.getElementById("sumaDiv");
 let sumaSpan = document.getElementById("sumaSpan");
 
 let mejoraRazaDiv = document.getElementById("mejoraRazaDiv");
-let mejoraClaseDiv = document.getElementById("mejoraClaseDiv");
+let equipoClaseDiv = document.getElementById("equipoClaseDiv");
 let levelSelect = document.getElementById("levelSelect");
+
+let habilidadesDiv = document.getElementById("habilidadesDiv");
 
 let valores = [];
 function dado() {
@@ -114,30 +116,64 @@ function actualizarValoresSelec(opt) {
 function cambioRaza(opt) {
     let div = document.createElement("div");
     mejoraRazaDiv.innerHTML = "";
+
+    let mejoraRaza1 = document.createElement("button");
+    let mejoraRaza2 = document.createElement("button");
+
+    mejoraRaza1.innerHTML =
+        '<div class="input-group" style="width: 140px;">' +
+        '   <span class="input-group-text" style="width:50px;">+1</span>' +
+        '       <select class="form-select" aria-label="mejoraRaza1">' +
+        '           <option value=""></option>' +
+        '           <option value="FUE">FUE</option>' +
+        '           <option value="DES">DES</option>' +
+        '           <option value="CON">CON</option>' +
+        '           <option value="CAR">CAR</option>' +
+        '           <option value="INT">INT</option>' +
+        '           <option value="SAB">SAB</option>' +
+        '       </select>' +
+        '</div>'
+        ;
+
+    mejoraRaza2.innerHTML =
+        '<div class="input-group" style="width: 140px;">' +
+        '   <span class="input-group-text" style="width:50px;">+1</span>' +
+        '   <select class="form-select" aria-label="mejoraRaza2">' +
+        '       <option value=""></option>' +
+        '       <option value="FUE">FUE</option>' +
+        '       <option value="DES">DES</option>' +
+        '       <option value="CON">CON</option>' +
+        '       <option value="CAR">CAR</option>' +
+        '       <option value="INT">INT</option>' +
+        '       <option value="SAB">SAB</option>' +
+        '   </select>' +
+        '</div>'
+        ;
+
     switch (opt.value) {
         case "Humano":
-            div.innerHTML = '<b>Mejora de Raza: </b>  <div class="w-auto m-auto"><div class="input-group w-auto" style="width: 140px;"><span class="input-group-text" style="width:50px;">+1</span><select class="form-select" aria-label="DES"><option value=""></option><option value="FUE">FUE</option><option value="DES">DES</option><option value="CON">CON</option><option value="CAR">CAR</option><option value="INT">INT</option><option value="SAB">SAB</option></select></div></div>  <div class="w-auto m-auto"><div class="input-group w-auto" style="width: 140px;"><span class="input-group-text" style="width:50px;">+1</span><select class="form-select" aria-label="DES"><option value=""></option><option value="FUE">FUE</option><option value="DES">DES</option><option value="CON">CON</option><option value="CAR">CAR</option><option value="INT">INT</option><option value="SAB">SAB</option></select></div></div>';
+            div.innerHTML = '<b>Mejora de Raza: </b>' + mejoraRaza1.innerHTML + mejoraRaza2.innerHTML;
             break;
         case "Elfo":
-            div.innerHTML = "<b>Mejora de Raza: </b> +1 Des y +1 Int";
+            div.innerHTML = "<b>Mejora de Raza: </b> +1 Des, +1 Int";
             break;
         case "Enano":
-            div.innerHTML = "<b>Mejora de Raza: </b> +1 Fue y +1 Con";
+            div.innerHTML = "<b>Mejora de Raza: </b> +1 Fue, +1 Con";
             break;
         case "Mediano":
-            div.innerHTML = "<b>Mejora de Raza: </b> +1 Des y +1 Car";
+            div.innerHTML = "<b>Mejora de Raza: </b> +1 Des, +1 Car";
             break;
         case "Goblin":
-            div.innerHTML = "<b>Mejora de Raza: </b> +1 Des y +1 Sab";
+            div.innerHTML = "<b>Mejora de Raza: </b> +1 Des, +1 Sab";
             break;
         case "Orco":
-            div.innerHTML = "<b>Mejora de Raza: </b> +1 Fue y +1 Con";
+            div.innerHTML = "<b>Mejora de Raza: </b> +1 Fue, +1 Con";
             break;
         case "Reptiliano":
-            div.innerHTML = "<b>Mejora de Raza: </b> +1 Fue y +1 Car";
+            div.innerHTML = "<b>Mejora de Raza: </b> +1 Fue, +1 Car";
             break;
         case "Otra":
-
+            div.innerHTML = '<b>Mejora de Raza: </b>' + mejoraRaza1.innerHTML + mejoraRaza2.innerHTML;
             break;
 
         default:
@@ -149,40 +185,128 @@ function cambioRaza(opt) {
 }
 
 function cambioClase(opt) {
-    let div = document.createElement("div");
-    mejoraClaseDiv.innerHTML = "";
+    let divPas = document.createElement("div");
+    let divEqi = document.createElement("div");
+    let divAst = document.createElement("div");
+    divAst.innerHTML = "<b>*</b> Puede usar el objeto pero no dispone de el inicialmente";
+
+    equipoClaseDiv.innerHTML = "";
+    habilidadesDiv.innerHTML = "";
 
     switch (opt.value) {
         case "Guerrero":
-            div.innerHTML = "<b>Pasiva de Clase (Sediento): </b>Al eliminar a un objetivo, gana una acción adicional.";
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Espada(1d6+FUE), *Escudo(Bloqueo)";
+            equipoClaseDiv.append(divEqi);
+            equipoClaseDiv.append(divAst);
+
+            divPas.innerHTML =
+                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                '   <div>' +
+                '       <b>Pasiva de Clase (Sediento): </b>Al eliminar a un objetivo, gana una acción adicional.' +
+                '   </div>' +
+                '</div>'
+                ;
+            habilidadesDiv.append(divPas);
             break;
         case "Bárbaro":
-            div.innerHTML = "<b>Pasiva de Clase (Ansia): </b>Cuando tiene un arma en cada mano, puede atacar con las dos armas a la vez en el mismo ataque. De esta forma, lanzaría 2d4+FUE.";
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Hacha de dos manos(1d6+FUE), *Hacha de mano(1d4+FUE | 3 distancia)";
+            equipoClaseDiv.append(divEqi);
+            equipoClaseDiv.append(divAst);
+
+            divPas.innerHTML =
+                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                '   <div>' +
+                '       <b>Pasiva de Clase (Ansia): </b>Cuando tiene un arma en cada mano, puede atacar con las dos armas a la vez en el mismo ataque. De esta forma, lanzaría 2d4+FUE.' +
+                '   </div>' +
+                '</div>'
+                ;
+            habilidadesDiv.append(divPas);
             break;
         case "Pícaro":
-            div.innerHTML = "<b>Pasiva de Clase (Sombra): </b>Puedes gastar una acción para entrar en sigilo. Al salir de sigilo, hace un ataque crítico.";
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Daga(1d6+DES), *Cuchillo arrojadizo(1d4+DES | 3 dis), *Bomba de humo";
+            equipoClaseDiv.append(divEqi);
+            equipoClaseDiv.append(divAst);
+
+            divPas.innerHTML =
+                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                '   <div>' +
+                '       <b>Pasiva de Clase (Sombra): </b>Puedes gastar una acción para entrar en sigilo. Al salir de sigilo, hace un ataque crítico.' +
+                '   </div>' +
+                '</div>'
+                ;
+            habilidadesDiv.append(divPas);
             break;
         case "Bardo":
-            div.innerHTML = "<b>Pasiva de Clase (Canción Grupal): </b>Si realizas un hechizo sobre un aliado, puedes aplicar el mismo efecto a otro aliado que se encuentre adyacente al primero.";
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Espada(1d6+DES), Instrumento(1d4+CAR | 3 dis)";
+            equipoClaseDiv.append(divEqi);
+
+            divPas.innerHTML =
+                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                '   <div>' +
+                '       <b>Pasiva de Clase (Canción Grupal): </b>Si realizas un hechizo sobre un aliado, puedes aplicar el mismo efecto a otro aliado que se encuentre adyacente al primero.' +
+                '   </div>' +
+                '</div>'
+                ;
+            habilidadesDiv.append(divPas);
             break;
         case "Cazador":
-            div.innerHTML = "<b>Pasiva de Clase (Hábil tirador): </b>Si atacas sin haberte movido, ganas +1 al daño.";
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Arco(1d6+DES | 4 dis), Flechas(25), *Flechas marcadoras, *Flechas explosivas, *Flechas empuje";
+            equipoClaseDiv.append(divEqi);
+            equipoClaseDiv.append(divAst);
+
+            divPas.innerHTML =
+                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                '   <div>' +
+                '       <b>Pasiva de Clase (Hábil tirador): </b>Si atacas sin haberte movido, ganas +1 al daño.' +
+                '   </div>' +
+                '</div>'
+                ;
+            habilidadesDiv.append(divPas);
             break;
         case "Mago":
-            div.innerHTML = "<b>Pasiva de Clase (Maná): </b>Por cada hechizo lanzado, acumula un punto de maná. Los puntos de maná se pueden consumir para sumar +1 al daño de un ataque. Se pueden acumular un máximo de siete puntos de maná.";
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Bastón(1d6+INT | 4 dis)";
+            equipoClaseDiv.append(divPas);
+            equipoClaseDiv.append(divEqi);
+
+            divPas.innerHTML =
+                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                '   <div>' +
+                '       <b>Pasiva de Clase (Maná): </b>Por cada hechizo lanzado, acumula un punto de maná. Los puntos de maná se pueden consumir para sumar +1 al daño de un ataque. Se pueden acumular un máximo de siete puntos de maná.' +
+                '   </div>' +
+                '</div>'
+                ;
+            habilidadesDiv.append(divPas);
             break;
         case "Clérigo":
-            div.innerHTML = "<b>Pasiva de Clase (Mi religión me lo permite): </b>Cuando lanza un hechizo, otorga +1 de daño a un aliado cercano.";
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Catalizador(1d6+SAB | 4 dis)";
+            equipoClaseDiv.append(divEqi);
+
+            divPas.innerHTML =
+                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                '   <div>' +
+                '       <b>Pasiva de Clase (Mi religión me lo permite): </b>Cuando lanza un hechizo, otorga +1 de daño a un aliado cercano.' +
+                '   </div>' +
+                '</div>'
+                ;
+            habilidadesDiv.append(divPas);
             break;
 
         default:
-            div.innerHTML = "<b>Pasiva de Clase : </b>";
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>";
+            equipoClaseDiv.append(divEqi);
+
+            divPas.innerHTML =
+                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                '   <div>' +
+                '       <b>Pasiva de Clase: </b>' +
+                '   </div>' +
+                '</div>'
+                ;
+            habilidadesDiv.append(divPas);
             break;
     }
-
-    mejoraClaseDiv.appendChild(div);
 }
 
-function cambioNivel(){
+function cambioNivel() {
 
 }
