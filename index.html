@@ -55,7 +55,7 @@
                 <div class="w-auto">
                     <div class="input-group" style="width: 120px;">
                         <span class="input-group-text w-50">FUE</span>
-                        <select class="form-select attrSelect" aria-label="FUE" onchange="cambiarSelect()">
+                        <select class="form-select attrSelect" aria-label="FUE" onchange="cambiarSelect(this)">
                             <option value=""></option>
                         </select>
                     </div>
@@ -63,7 +63,7 @@
                 <div class="w-auto">
                     <div class="input-group" style="width: 120px;">
                         <span class="input-group-text w-50">DES</span>
-                        <select class="form-select attrSelect" aria-label="DES" onchange="cambiarSelect()">
+                        <select class="form-select attrSelect" aria-label="DES" onchange="cambiarSelect(this)">
                             <option value=""></option>
                         </select>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="w-auto">
                     <div class="input-group" style="width: 120px;">
                         <span class="input-group-text w-50">CON</span>
-                        <select class="form-select attrSelect" aria-label="CON" onchange="cambiarSelect()">
+                        <select class="form-select attrSelect" aria-label="CON" onchange="cambiarSelect(this)">
                             <option value=""></option>
                         </select>
                     </div>
@@ -79,7 +79,7 @@
                 <div class="w-auto">
                     <div class="input-group" style="width: 120px;">
                         <span class="input-group-text w-50">CAR</span>
-                        <select class="form-select attrSelect" aria-label="CAR" onchange="cambiarSelect()">
+                        <select class="form-select attrSelect" aria-label="CAR" onchange="cambiarSelect(this)">
                             <option value=""></option>
                         </select>
                     </div>
@@ -87,7 +87,7 @@
                 <div class="w-auto">
                     <div class="input-group" style="width: 120px;">
                         <span class="input-group-text w-50">INT</span>
-                        <select class="form-select attrSelect" aria-label="INT" onchange="cambiarSelect()">
+                        <select class="form-select attrSelect" aria-label="INT" onchange="cambiarSelect(this)">
                             <option value=""></option>
                         </select>
                     </div>
@@ -95,7 +95,7 @@
                 <div class="w-auto">
                     <div class="input-group" style="width: 120px;">
                         <span class="input-group-text w-50">SAB</span>
-                        <select class="form-select attrSelect" aria-label="SAB" onchange="cambiarSelect()">
+                        <select class="form-select attrSelect" aria-label="SAB" onchange="cambiarSelect(this)">
                             <option value=""></option>
                         </select>
                     </div>
@@ -134,12 +134,12 @@
                 </div>
             </div>
             <div id="razaField" class="row">
-                <div id="razaDiv">
+                <div id="mejoraClaseDiv">
                     <p> <b>Mejora por raza: </b> +1 a 2 atributos</p>
                 </div>
             </div>
             <div id="claseField" class="row">
-                <div id="claseDiv">
+                <div id="mejoraClaseDiv">
                     <p> <b>Mejora por clase: </b> +1 a 2 atributos</p>
                 </div>
             </div>

@@ -18,13 +18,12 @@ function dado() {
     generarValores();
     generarSuma();
 
-    dadoBoton.disabled = "disabled";
-
     rellenarValoresSelec();
     rellenarSelects();
 }
 
 function generarValores() {
+    valores = [];
     for (let i = 0; i < 7; i++) {
         valores.push(Math.floor(Math.random() * (8 - 1 + 1) + 1));
     }
@@ -39,6 +38,10 @@ function generarSuma() {
     let suma = valores.reduce((a, b) => a + b);
     sumaDiv.hidden = "";
     sumaSpan.innerText = suma;
+
+    if (suma > 23) {
+        dadoBoton.disabled = "disabled";
+    }
 }
 
 let valoresSeleccionados = [
@@ -75,7 +78,7 @@ function rellenarSelects() {
             if (valoresSeleccionados[e][1] != -1) {
                 //option.disabled = true;
                 option.className = "bg-danger text-white";
-            }else{
+            } else {
                 option.className = "bg-success text-white";
             }
             if (valoresSeleccionados[e][1] === i) {
@@ -87,19 +90,25 @@ function rellenarSelects() {
     }
 }
 
-function cambiarSelect() {
+function cambiarSelect(opt) {
     rellenarValoresSelec();
-    actualizarValoresSelec();
+    actualizarValoresSelec(opt);
     rellenarSelects();
 }
 
-function actualizarValoresSelec() {
+function actualizarValoresSelec(opt) {
     let selects = document.getElementsByClassName("attrSelect");
     selects = [...selects];
 
     for (let i = 0; i < selects.length; i++) {
         if (selects[i].selectedIndex > 0) {
-            valoresSeleccionados[selects[i].selectedIndex - 1][1] = i;
+            if (selects[i] === opt) {
+                valoresSeleccionados[selects[i].selectedIndex - 1][1] = i;
+            } else if (selects[i] !== opt && selects[i].selectedIndex === opt.selectedIndex) {
+                //valoresSeleccionados[selects[i].selectedIndex - 1][1] = -1;
+            } else {
+                valoresSeleccionados[selects[i].selectedIndex - 1][1] = i;
+            }
         }
     }
 }
