@@ -1,18 +1,18 @@
 "use strict";
 
-let dadoBoton = document.getElementById("dadoBoton");
-let valoresInput = document.getElementById("valores");
+let levelSelect = document.getElementById("levelSelect");
+let razaSelect = document.getElementById("razaSelect");
+let claseSelect = document.getElementById("claseSelect");
+let nivel = levelSelect.value;
+let raza = razaSelect.value;
+let clase = claseSelect.value;
 
+let dadoBoton = document.getElementById("dadoBoton");
+let valoresInput = document.getElementById("valoresInput");
 let sumaDiv = document.getElementById("sumaDiv");
-let sumaSpan = document.getElementById("sumaSpan");
 
 let mejoraRazaDiv = document.getElementById("mejoraRazaDiv");
 let equipoClaseDiv = document.getElementById("equipoClaseDiv");
-let levelSelect = document.getElementById("levelSelect");
-
-let nivel = levelSelect.value;
-let clase = "";
-
 let habilidadesDiv = document.getElementById("habilidadesDiv");
 
 let valores = [];
@@ -39,7 +39,7 @@ function generarSuma() {
     valores.splice(0, 1);
     let suma = valores.reduce((a, b) => a + b);
     sumaDiv.hidden = "";
-    sumaSpan.innerText = suma;
+    sumaDiv.innerHTML = "<b>Suma: </b>" + suma;
 
     if (suma > 23) {
         dadoBoton.disabled = "disabled";
@@ -116,12 +116,14 @@ function actualizarValoresSelec(opt) {
     }
 }
 
-function cambioRaza(opt) {
+function cambioRaza() {
+    raza = razaSelect.value;
+
     let div = document.createElement("div");
     mejoraRazaDiv.innerHTML = "";
 
-    let mejoraRaza1 = document.createElement("button");
-    let mejoraRaza2 = document.createElement("button");
+    let mejoraRaza1 = document.createElement("div");
+    let mejoraRaza2 = document.createElement("div");
 
     mejoraRaza1.innerHTML =
         '<div class="input-group" style="width: 140px;">' +
@@ -153,7 +155,7 @@ function cambioRaza(opt) {
         '</div>'
         ;
 
-    switch (opt.value) {
+    switch (raza) {
         case "Humano":
             div.innerHTML = '<b>Mejora de Raza: </b>' + mejoraRaza1.innerHTML + mejoraRaza2.innerHTML;
             break;
@@ -187,12 +189,14 @@ function cambioRaza(opt) {
     mejoraRazaDiv.appendChild(div);
 }
 
-function cambioClase(opt) {
-    dibujarEquipo(opt);
+function cambioClase() {
+    clase = claseSelect.value;
+
+    dibujarEquipo();
     dibujarHabilidades();
 }
 
-function dibujarEquipo(opt) {
+function dibujarEquipo() {
     let divEqi = document.createElement("div");
     let divAst = document.createElement("div");
     divAst.innerHTML = "<b>*</b> Puede usar el objeto pero no dispone de el inicialmente";
@@ -200,7 +204,7 @@ function dibujarEquipo(opt) {
     equipoClaseDiv.innerHTML = "";
     habilidadesDiv.innerHTML = "";
 
-    switch (opt.value) {
+    switch (clase) {
         case "Guerrero":
             clase = "Guerrero";
 
@@ -419,7 +423,6 @@ function dibujarHabilidades() {
             }
             break;
         case "":
-            console.log("hola");
             divPas.innerHTML =
                 '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
                 '   <div>' +
