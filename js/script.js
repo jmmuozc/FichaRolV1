@@ -10,6 +10,9 @@ let mejoraRazaDiv = document.getElementById("mejoraRazaDiv");
 let equipoClaseDiv = document.getElementById("equipoClaseDiv");
 let levelSelect = document.getElementById("levelSelect");
 
+let nivel = levelSelect.value;
+let clase = "";
+
 let habilidadesDiv = document.getElementById("habilidadesDiv");
 
 let valores = [];
@@ -195,10 +198,70 @@ function cambioClase(opt) {
 
     switch (opt.value) {
         case "Guerrero":
+            clase = "Guerrero";
+
             divEqi.innerHTML = "<b>Equipo de Clase: </b>Espada(1d6+FUE), *Escudo(Bloqueo)";
             equipoClaseDiv.append(divEqi);
             equipoClaseDiv.append(divAst);
+            break;
+        case "Bárbaro":
+            clase = "Bárbaro";
 
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Hacha de dos manos(1d6+FUE), *Hacha de mano(1d4+FUE | 3 distancia)";
+            equipoClaseDiv.append(divEqi);
+            equipoClaseDiv.append(divAst);
+            break;
+        case "Pícaro":
+            clase = "Pícaro";
+
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Daga(1d6+DES), *Cuchillo arrojadizo(1d4+DES | 3 dis), *Bomba de humo";
+            equipoClaseDiv.append(divEqi);
+            equipoClaseDiv.append(divAst);
+            break;
+        case "Bardo":
+            clase = "Bardo";
+
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Espada(1d6+DES), Instrumento(1d4+CAR | 3 dis)";
+            equipoClaseDiv.append(divEqi);
+            break;
+        case "Cazador":
+            clase = "Cazador";
+
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Arco(1d6+DES | 4 dis), Flechas(25), *Flechas marcadoras, *Flechas explosivas, *Flechas empuje";
+            equipoClaseDiv.append(divEqi);
+            equipoClaseDiv.append(divAst);
+            break;
+        case "Mago":
+            clase = "Mago";
+
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Bastón(1d6+INT | 4 dis)";
+            equipoClaseDiv.append(divPas);
+            equipoClaseDiv.append(divEqi);
+            break;
+        case "Clérigo":
+            clase = "Clérigo";
+
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>Catalizador(1d6+SAB | 4 dis)";
+            equipoClaseDiv.append(divEqi);
+            break;
+
+        default:
+            clase = "";
+            divEqi.innerHTML = "<b>Equipo de Clase: </b>";
+            equipoClaseDiv.append(divEqi);
+            break;
+    }
+    dibujarHabilidades();
+}
+
+function dibujarHabilidades() {
+    let divPas = document.createElement("div");
+    let divHab = document.createElement("div");
+
+    habilidadesDiv.innerHTML = "";
+
+    switch (clase) {
+        case "Guerrero":
             divPas.innerHTML =
                 '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
                 '   <div>' +
@@ -209,10 +272,6 @@ function cambioClase(opt) {
             habilidadesDiv.append(divPas);
             break;
         case "Bárbaro":
-            divEqi.innerHTML = "<b>Equipo de Clase: </b>Hacha de dos manos(1d6+FUE), *Hacha de mano(1d4+FUE | 3 distancia)";
-            equipoClaseDiv.append(divEqi);
-            equipoClaseDiv.append(divAst);
-
             divPas.innerHTML =
                 '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
                 '   <div>' +
@@ -223,10 +282,6 @@ function cambioClase(opt) {
             habilidadesDiv.append(divPas);
             break;
         case "Pícaro":
-            divEqi.innerHTML = "<b>Equipo de Clase: </b>Daga(1d6+DES), *Cuchillo arrojadizo(1d4+DES | 3 dis), *Bomba de humo";
-            equipoClaseDiv.append(divEqi);
-            equipoClaseDiv.append(divAst);
-
             divPas.innerHTML =
                 '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
                 '   <div>' +
@@ -236,24 +291,7 @@ function cambioClase(opt) {
                 ;
             habilidadesDiv.append(divPas);
             break;
-        case "Bardo":
-            divEqi.innerHTML = "<b>Equipo de Clase: </b>Espada(1d6+DES), Instrumento(1d4+CAR | 3 dis)";
-            equipoClaseDiv.append(divEqi);
-
-            divPas.innerHTML =
-                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
-                '   <div>' +
-                '       <b>Pasiva de Clase (Canción Grupal): </b>Si realizas un hechizo sobre un aliado, puedes aplicar el mismo efecto a otro aliado que se encuentre adyacente al primero.' +
-                '   </div>' +
-                '</div>'
-                ;
-            habilidadesDiv.append(divPas);
-            break;
         case "Cazador":
-            divEqi.innerHTML = "<b>Equipo de Clase: </b>Arco(1d6+DES | 4 dis), Flechas(25), *Flechas marcadoras, *Flechas explosivas, *Flechas empuje";
-            equipoClaseDiv.append(divEqi);
-            equipoClaseDiv.append(divAst);
-
             divPas.innerHTML =
                 '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
                 '   <div>' +
@@ -263,11 +301,48 @@ function cambioClase(opt) {
                 ;
             habilidadesDiv.append(divPas);
             break;
-        case "Mago":
-            divEqi.innerHTML = "<b>Equipo de Clase: </b>Bastón(1d6+INT | 4 dis)";
-            equipoClaseDiv.append(divPas);
-            equipoClaseDiv.append(divEqi);
+        case "Bardo":
+            divPas.innerHTML =
+                '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                '   <div>' +
+                '       <b>Pasiva de Clase (Canción Grupal): </b>Si realizas un hechizo sobre un aliado, puedes aplicar el mismo efecto a otro aliado que se encuentre adyacente al primero.' +
+                '   </div>' +
+                '</div>'
+                ;
+            habilidadesDiv.append(divPas);
+            switch (nivel) {
+                case "3":
+                    divHab.innerHTML +=
+                        '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                        '   <div>' +
+                        '       <b>Melodía debilitante: </b>1d4+CAR+Debilitado.' +
+                        '   </div>' +
+                        '</div>'
+                        ;
+                case "2":
+                    divHab.innerHTML +=
+                        '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                        '   <div>' +
+                        '       <b>Canción motivadora: </b>El aliado tira con ventaja durante su turno.' +
+                        '   </div>' +
+                        '</div>'
+                        ;
+                case "1":
+                    divHab.innerHTML +=
+                        '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                        '   <div>' +
+                        '       <b>Canción regenerante: </b>Curación de 1d4+CAR. (3 usos por combate)' +
+                        '   </div>' +
+                        '</div>'
+                        ;
+                    break;
 
+                default:
+                    break;
+            }
+            habilidadesDiv.append(divHab);
+            break;
+        case "Mago":
             divPas.innerHTML =
                 '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
                 '   <div>' +
@@ -276,11 +351,41 @@ function cambioClase(opt) {
                 '</div>'
                 ;
             habilidadesDiv.append(divPas);
+            switch (nivel) {
+                case "3":
+                    divHab.innerHTML +=
+                        '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                        '   <div>' +
+                        '       <b>Juntar: </b>1d4+INT en área y junta a los enemigos.' +
+                        '   </div>' +
+                        '</div>'
+                        ;
+                    break;
+                case "2":
+                    divHab.innerHTML +=
+                        '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                        '   <div>' +
+                        '       <b>Aturdir: </b>1d4+INT + Aturdir.' +
+                        '   </div>' +
+                        '</div>'
+                        ;
+                    break;
+                case "1":
+                    divHab.innerHTML +=
+                        '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                        '   <div>' +
+                        '       <b>Explosión: </b>1d4+INT en área.' +
+                        '   </div>' +
+                        '</div>'
+                        ;
+                    break;
+
+                default:
+                    break;
+            }
+            habilidadesDiv.append(divHab);
             break;
         case "Clérigo":
-            divEqi.innerHTML = "<b>Equipo de Clase: </b>Catalizador(1d6+SAB | 4 dis)";
-            equipoClaseDiv.append(divEqi);
-
             divPas.innerHTML =
                 '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
                 '   <div>' +
@@ -289,12 +394,40 @@ function cambioClase(opt) {
                 '</div>'
                 ;
             habilidadesDiv.append(divPas);
+            switch (nivel) {
+                case "3":
+                    divHab.innerHTML +=
+                        '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                        '   <div>' +
+                        '       <b>Aturdir: </b>1d4+SAB + Aturdir.' +
+                        '   </div>' +
+                        '</div>'
+                        ;
+                case "2":
+                    divHab.innerHTML +=
+                        '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                        '   <div>' +
+                        '       <b>Marca divina: </b>1d4+SAB + Marcado.' +
+                        '   </div>' +
+                        '</div>'
+                        ;
+                case "1":
+                    divHab.innerHTML +=
+                        '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
+                        '   <div>' +
+                        '       <b>Curación: </b>Curación de 1d6+SAB. (3 usos por combate)' +
+                        '   </div>' +
+                        '</div>'
+                        ;
+                    break;
+
+                default:
+                    break;
+            }
+            habilidadesDiv.append(divHab);
             break;
-
-        default:
-            divEqi.innerHTML = "<b>Equipo de Clase: </b>";
-            equipoClaseDiv.append(divEqi);
-
+        case "":
+            console.log("hola");
             divPas.innerHTML =
                 '<div class="border border-1 rounded-1 p-2 mb-3 " style="max-width: 95%; background: #f8f8f8;" >' +
                 '   <div>' +
@@ -304,9 +437,14 @@ function cambioClase(opt) {
                 ;
             habilidadesDiv.append(divPas);
             break;
+
+        default:
+            break;
     }
 }
 
 function cambioNivel() {
+    nivel = levelSelect.value;
 
+    dibujarHabilidades();
 }
