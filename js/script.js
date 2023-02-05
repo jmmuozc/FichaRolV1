@@ -255,8 +255,6 @@ function actualizarModificador() {
         if (modifier[i] <= 7 && modifier[i] != "") {
             values.push(-3 + (modifier[i] - 1));
         } else {
-            console.log("Mayor que 7");
-            console.log(modifier[i]);
 
             switch (modifier[i]) {
 
