@@ -1,0 +1,5 @@
+#modifySelect::-ms-expand{
+    display: none !important; /*Evita que se muestre la flecha por defecto en versiones de IE*/
+    background-color: red !important;
+    
+    }

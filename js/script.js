@@ -15,6 +15,8 @@ let mejoraRazaDiv = document.getElementById("mejoraRazaDiv");
 let equipoClaseDiv = document.getElementById("equipoClaseDiv");
 let habilidadesDiv = document.getElementById("habilidadesDiv");
 
+let selectRaza;
+
 let valores = [];
 function dado() {
     generarValores();
@@ -97,6 +99,7 @@ function cambiarSelect(opt) {
     rellenarValoresSelec();
     actualizarValoresSelec(opt);
     rellenarSelects();
+    actualizarModificador();
 }
 
 function actualizarValoresSelec(opt) {
@@ -116,6 +119,185 @@ function actualizarValoresSelec(opt) {
     }
 }
 
+function actualizarModificador() {
+    let selects = document.getElementsByClassName("attrSelect");
+    let spans = document.getElementsByClassName("modifierSpan");
+    raza = razaSelect.value;
+    selects = [...selects];
+    spans = [...spans];
+    let values = [];
+    let modifier = [];
+
+    for (let i = 0; i < selects.length; i++) {
+        modifier.push(parseInt(selects[i].value));
+    }
+
+
+    switch (raza) {
+        case "Humano":
+            selectRaza = document.getElementsByClassName("raceUpgrade");
+            selectRaza = [...selectRaza];
+            for (let i = 0; i < selectRaza.length; i++) {
+                switch (selectRaza[i].value) {
+                    case "FUE":
+                        modifier[0]++;
+                        break;
+
+                    case "DES":
+                        modifier[1]++;
+
+                        break;
+
+                    case "CON":
+                        modifier[2]++;
+
+                        break;
+
+                    case "CAR":
+                        modifier[3]++;
+
+                        break;
+
+                    case "INT":
+                        modifier[4]++;
+
+                        break;
+
+                    case "SAB":
+                        modifier[5]++;
+
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+            break;
+        case "Elfo":
+            modifier[1]++;
+            modifier[4]++;
+            break;
+        case "Enano":
+            modifier[0]++;
+            modifier[2]++;
+            break;
+        case "Mediano":
+            modifier[1]++;
+            modifier[3]++;
+            break;
+        case "Goblin":
+
+            modifier[1]++;
+            modifier[5]++;
+            break;
+        case "Orco":
+
+            modifier[0]++;
+            modifier[2]++;
+            break;
+        case "Reptiliano":
+
+            modifier[0]++;
+            modifier[3]++;
+            break;
+        case "Otra":
+
+            selectRaza = document.getElementsByClassName("raceUpgrade");
+            selectRaza = [...selectRaza];
+            for (let i = 0; i < selectRaza.length; i++) {
+                switch (selectRaza[i].value) {
+                    case "FUE":
+                        modifier[0]++;
+
+                        break;
+
+                    case "DES":
+                        modifier[1]++;
+
+                        break;
+
+                    case "CON":
+                        modifier[2]++;
+
+                        break;
+
+                    case "CAR":
+                        modifier[3]++;
+
+                        break;
+
+                    case "INT":
+                        modifier[4]++;
+
+                        break;
+
+                    case "SAB":
+                        modifier[5]++;
+
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+            break;
+
+        default:
+
+            break;
+    }
+
+
+    for (let i = 0; i < modifier.length; i++) {
+
+        if (modifier[i] <= 7 && modifier[i] != "") {
+            values.push(-3 + (modifier[i] - 1));
+        } else {
+            console.log("Mayor que 7");
+            console.log(modifier[i]);
+
+            switch (modifier[i]) {
+
+                case 8:
+                    values.push(3);
+                    break;
+                case 9: case 10:
+                    values.push(4);
+                    break;
+                case 11: case 12:
+                    values.push(5);
+                    break;
+                case 13: case 14:
+                    values.push(6);
+                    break;
+                case 15: case 16:
+                    values.push(7);
+                    break;
+                case 17: case 18:
+                    values.push(8);
+                    break;
+                case 19: case 20:
+                    values.push(9);
+                    break;
+                default:
+                    values.push(-3);
+                    break;
+            }
+
+        }
+
+    }
+
+    for (let i = 0; i < spans.length; i++) {
+
+        spans[i].innerText = values[i];
+
+    }
+
+}
+
 function cambioRaza() {
     raza = razaSelect.value;
 
@@ -128,7 +310,7 @@ function cambioRaza() {
     mejoraRaza1.innerHTML =
         '<div class="input-group" style="width: 140px;">' +
         '   <span class="input-group-text" style="width:50px;">+1</span>' +
-        '       <select class="form-select" aria-label="mejoraRaza1">' +
+        '       <select class="form-select raceUpgrade" aria-label="mejoraRaza1" onchange="actualizarModificador()">' +
         '           <option value=""></option>' +
         '           <option value="FUE">FUE</option>' +
         '           <option value="DES">DES</option>' +
@@ -143,7 +325,7 @@ function cambioRaza() {
     mejoraRaza2.innerHTML =
         '<div class="input-group" style="width: 140px;">' +
         '   <span class="input-group-text" style="width:50px;">+1</span>' +
-        '   <select class="form-select" aria-label="mejoraRaza2">' +
+        '   <select class="form-select raceUpgrade" aria-label="mejoraRaza2" onchange="actualizarModificador()">' +
         '       <option value=""></option>' +
         '       <option value="FUE">FUE</option>' +
         '       <option value="DES">DES</option>' +
@@ -187,6 +369,7 @@ function cambioRaza() {
     }
 
     mejoraRazaDiv.appendChild(div);
+    actualizarModificador();
 }
 
 function cambioClase() {
